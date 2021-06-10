@@ -3,20 +3,21 @@ package br.com.brmalls.xpto_client.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.brmalls.xpto_client.Utils;
 import br.com.brmalls.xpto_client.daos.CompanyDao;
+import br.com.brmalls.xpto_client.dtos.CompanyDTO;
 import br.com.brmalls.xpto_client.models.CompanyModel;
 
 @Service
 public class CompanyService extends AbstractService<CompanyModel> {
 	
-	private static final String MASK = "[0-9]{2}\\.?[0-9]{3}\\.?[0-9]{3}\\/?[0-9]{4}\\-?[0-9]{2}";
 	
 	public CompanyModel create( final CompanyModel company ) {
 		
-		final Boolean cnpjHasMask = this.checkCNPJWithMask( company.cnpj );
+		final Boolean cnpjHasMask = Utils.checkCNPJWithMask( company.cnpj );
 		
 		if( cnpjHasMask ) {
-			company.cnpj = this.clearCNPJMask( company.cnpj );
+			company.cnpj = Utils.clearCNPJMask( company.cnpj );
 		}
 		
 		this.dao.save( company );
@@ -24,18 +25,9 @@ public class CompanyService extends AbstractService<CompanyModel> {
 		return company;
 	}
 	
-	public Boolean checkCNPJWithMask( String cnpj ) {
+	public CompanyDTO getCompany( final String cnpj ) {
 		
-		final Boolean hasMask = cnpj.matches( MASK );
-		
-		return hasMask;
-	}
-	
-	public String clearCNPJMask( String cnpj ) {
-		
-		final String cleanCnpj = cnpj.replaceAll( "[\\.\\/\\-\\^]", "" );
-		
-		return cleanCnpj;
+		return this.dao.getCompanyByCnpj( cnpj );
 	}
 	
 	@Autowired
