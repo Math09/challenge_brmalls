@@ -6,7 +6,7 @@
 
 **Informações** </br>
  * **Vaga:** Dev Java
- * **Entrega:** 09/06/2021
+ * **Entrega:** 11/06/2021
 
 ---
 
