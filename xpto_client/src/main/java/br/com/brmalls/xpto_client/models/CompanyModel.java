@@ -6,7 +6,6 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.mysql.cj.x.protobuf.MysqlxDatatypes.Array;
 
 import lombok.Getter;
 import lombok.Setter;

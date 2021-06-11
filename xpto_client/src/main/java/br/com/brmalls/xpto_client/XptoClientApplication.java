@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class XptoClientApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(XptoClientApplication.class, args);
+	public static void main( String[] args ) {
+		SpringApplication.run( XptoClientApplication.class, args );
 	}
 
 }
