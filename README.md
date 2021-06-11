@@ -1,4 +1,4 @@
-# Desafio desenvolvido para a empresa brMalls.
+# Desafio de processo seletivo - brMalls.
 
 <p align="center" width="100%">
     <img src="./images/logo_brmalls.png"> 
