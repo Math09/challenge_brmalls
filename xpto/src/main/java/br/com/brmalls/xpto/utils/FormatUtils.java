@@ -7,7 +7,7 @@ public class FormatUtils {
     }
 
     public static String formatMessageErrorWithCNPJ( String message, String cnpj ) {
-        return message.replace( "{}", cnpj );
+        return message.replace( "{}", cnpj != null ? cnpj : "cnpj_null" );
     }
 
 }
