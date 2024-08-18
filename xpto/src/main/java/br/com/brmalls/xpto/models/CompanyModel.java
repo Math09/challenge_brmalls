@@ -22,4 +22,8 @@ public class CompanyModel extends AbstractModel {
     @Column( name = "nome_fantasia" )
     public @Getter @Setter String fantasyName;
 
+    public String toString() {
+        return "CompanyModel{ " + "id=" + getId() + ", cnpj='" + getCnpj() + '\'' + ", socialName='" + getSocialName() + '\'' + ", fantasyName='" + getFantasyName() + '}';
+    }
+
 }
