@@ -1,5 +1,7 @@
 FROM maven:3.8.4-openjdk-17 AS build
 
+RUN rm -rf ~/.m2/repository
+
 WORKDIR /xpto_api
 COPY pom.xml .
 COPY src ./src
