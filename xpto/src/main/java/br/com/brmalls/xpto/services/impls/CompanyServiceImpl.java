@@ -77,12 +77,27 @@ public class CompanyServiceImpl implements CompanyService {
             }
             else {
                 logger.error( CONSTANTS.RESPONSE_NON_OK, response.getStatus() );
-                throw new IllegalStateException( CONSTANTS.RESPONSE_NON_OK + response.getStatus() );
+                throw new IllegalStateException( FormatUtils.formatMessageErrorWithCNPJ( CONSTANTS.RESPONSE_NON_OK, response.getStatus() ) );
             }
         }
-        catch( Exception e ) {
-            logger.error( CONSTANTS.ERROR_QUERYING, cnpj, e );
+        catch( NoSuchElementException exception ) {
+            logger.error( CONSTANTS.RESPONSE_NO, cnpj, exception );
+            throw exception;
+        }
+        catch( IllegalStateException exception ) {
+            logger.error( CONSTANTS.RESPONSE_NON_OK, cnpj, exception );
+            throw exception;
+        }
+        catch( RestClientException exception ) {
+            logger.error( CONSTANTS.ERROR_QUERYING, cnpj, exception );
             throw new RestClientException( FormatUtils.formatMessageErrorWithCNPJ( CONSTANTS.ERROR_QUERYING, cnpj ) );
+        }
+        catch( Exception exception ) {
+            logger.error( CONSTANTS.ERROR_EXCEPTION, cnpj, exception );
+            throw exception;
+        }
+        finally {
+            logger.info( CONSTANTS.END_METHOD, methodName, cnpj );
         }
     }
 
