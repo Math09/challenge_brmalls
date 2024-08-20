@@ -6,6 +6,8 @@ public class CONSTANTS {
 
     public static final String START_METHOD = "Starting method {} with CNPJ: {}";
 
+    public static final String END_METHOD = "Finishing method {} with CNPJ: {}";
+
     public static final String COMPANY_SAVED = "Company saved in the database: {}";
 
     public static final String QUERYING_COMPANY = "Querying company for CNPJ: {}";
@@ -17,6 +19,8 @@ public class CONSTANTS {
     public static final String RESPONSE_NON_OK = "Tax Service returned a non-OK status: {}";
 
     public static final String ERROR_QUERYING = "Error querying Tax Service for CNPJ: {}";
+
+    public static final String ERROR_EXCEPTION = "An unexpected error occurred while processing the company data with CNPJ: {}";
 
     public static final String INVALID_CNPJ = "Invalid CNPJ: {}";
 
