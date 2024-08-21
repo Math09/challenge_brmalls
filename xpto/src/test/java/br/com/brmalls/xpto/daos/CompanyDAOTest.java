@@ -49,7 +49,7 @@ public class CompanyDAOTest {
 
     @Test
     void existCNPJInDB() {
-        Optional<CompanyModel> company = companyDAO.findByCnpj( "73648255000130" );
+        Optional<CompanyModel> company = companyDAO.findByCnpj( "CNPJ_PLACEHOLDER" );
 
         assertTrue( company.isPresent(), "The company must exist in the database" );
         assertEquals( "Empresa LMN ME", company.get().getSocialName(), "Company social name should match" );

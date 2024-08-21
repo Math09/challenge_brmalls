@@ -63,7 +63,7 @@ public class CompanyControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource( strings = { "invalid_cnpj", "" } )
+    @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnIllegalArgumentException( String invalidCNPJ ) {
         final String expectedMessage = String.format( CONSTANTS.INVALID_CNPJ, invalidCNPJ );
         when( companyService.getCompanyByCnpj( invalidCNPJ ) ).thenThrow( new IllegalArgumentException( expectedMessage ) );
@@ -105,7 +105,7 @@ public class CompanyControllerTest {
     }
 
     @ParameterizedTest
-    @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER", "INVALID_CNPJ_PLACEHOLDER" } )
+    @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnNoSuchElementException( String cnpj ) {
         final String expectedMessage = String.format( CONSTANTS.RESPONSE_NO, cnpj );
         when( companyService.getCompanyByCnpj( cnpj ) ).thenThrow( new NoSuchElementException( expectedMessage ) );
