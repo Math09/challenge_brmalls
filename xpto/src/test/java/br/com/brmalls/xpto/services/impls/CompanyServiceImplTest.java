@@ -16,9 +16,17 @@ import org.springframework.web.client.RestTemplate;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.eq;
+import static org.mockito.Mockito.never;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.any;
 
 public class CompanyServiceImplTest {
 
@@ -63,7 +71,7 @@ public class CompanyServiceImplTest {
         final String invalidCNPJ = "CNPJ_PLACEHOLDER";
 
         assertThrows( IllegalArgumentException.class, () -> companyService.getCompanyByCnpj( invalidCNPJ ) );
-        verify( companyDao, never()).findByCnpj( anyString() );
+        verify( companyDao, never() ).findByCnpj( anyString() );
     }
 
     @Test

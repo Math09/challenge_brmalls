@@ -5,7 +5,7 @@ import java.util.InputMismatchException;
 public class CNPJUtils {
 
     public static boolean isValidCNPJ( String cnpj ) {
-        String cleanCNPJ = FormatUtils.formatCNPJ( cnpj );
+        final String cleanCNPJ = FormatUtils.formatCNPJ( cnpj );
         return isCorrectCNPJ( cleanCNPJ ) && isValidCNPJDigits( cleanCNPJ );
     }
 

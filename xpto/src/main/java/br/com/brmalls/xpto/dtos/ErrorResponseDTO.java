@@ -13,6 +13,10 @@ public class ErrorResponseDTO {
 
     private String path;
 
+    public ErrorResponseDTO() {
+        // ---
+    }
+
     public ErrorResponseDTO( int status, String error, String message, String path ) {
         this.status = status;
         this.error = error;

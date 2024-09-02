@@ -20,17 +20,18 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.NoSuchElementException;
 import java.util.Objects;
 
+import static java.lang.String.format;
+import static org.mockito.Mockito.when;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
 
 public class CompanyControllerTest {
 
     @Mock
-    private CompanyService companyService;
+    private WebRequest webRequest;
 
     @Mock
-    private WebRequest webRequest;
+    private CompanyService companyService;
 
     @InjectMocks
     private CompanyController companyController;
@@ -56,7 +57,7 @@ public class CompanyControllerTest {
 
         when( companyService.getCompanyByCnpj( cnpj ) ).thenReturn( company );
 
-        ResponseEntity<CompanyModel> response = companyController.getCompanyByCNPJ( cnpj );
+        final ResponseEntity<CompanyModel> response = companyController.getCompanyByCNPJ( cnpj );
 
         assertEquals( HttpStatus.OK, response.getStatusCode() );
         assertEquals( company, response.getBody() );
@@ -65,7 +66,7 @@ public class CompanyControllerTest {
     @ParameterizedTest
     @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnIllegalArgumentException( String invalidCNPJ ) {
-        final String expectedMessage = String.format( CONSTANTS.INVALID_CNPJ, invalidCNPJ );
+        final String expectedMessage = format( CONSTANTS.INVALID_CNPJ, invalidCNPJ );
         when( companyService.getCompanyByCnpj( invalidCNPJ ) ).thenThrow( new IllegalArgumentException( expectedMessage ) );
 
         mockWebRequestDescription( invalidCNPJ );
@@ -86,7 +87,7 @@ public class CompanyControllerTest {
     @ParameterizedTest
     @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnIllegalStateException( String cnpj ) {
-        final String expectedMessage = String.format( CONSTANTS.RESPONSE_NON_OK, cnpj );
+        final String expectedMessage = format( CONSTANTS.RESPONSE_NON_OK, cnpj );
         when( companyService.getCompanyByCnpj( cnpj ) ).thenThrow( new IllegalStateException( expectedMessage ) );
 
         mockWebRequestDescription( cnpj );
@@ -107,7 +108,7 @@ public class CompanyControllerTest {
     @ParameterizedTest
     @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnNoSuchElementException( String cnpj ) {
-        final String expectedMessage = String.format( CONSTANTS.RESPONSE_NO, cnpj );
+        final String expectedMessage = format( CONSTANTS.RESPONSE_NO, cnpj );
         when( companyService.getCompanyByCnpj( cnpj ) ).thenThrow( new NoSuchElementException( expectedMessage ) );
 
         mockWebRequestDescription( cnpj );
@@ -128,7 +129,7 @@ public class CompanyControllerTest {
     @ParameterizedTest
     @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnRestClientException( String cnpj ) {
-        final String expectedMessage = String.format( CONSTANTS.ERROR_QUERYING, cnpj );
+        final String expectedMessage = format( CONSTANTS.ERROR_QUERYING, cnpj );
         when( companyService.getCompanyByCnpj( cnpj ) ).thenThrow( new RestClientException( expectedMessage ) );
 
         mockWebRequestDescription( cnpj );
@@ -149,7 +150,7 @@ public class CompanyControllerTest {
     @ParameterizedTest
     @ValueSource( strings = { "INVALID_CNPJ_PLACEHOLDER" } )
     void isReturnGenericException( String cnpj ) {
-        final String expectedMessage = String.format( CONSTANTS.ERROR_QUERYING, cnpj );
+        final String expectedMessage = format( CONSTANTS.ERROR_QUERYING, cnpj );
         when( companyService.getCompanyByCnpj( cnpj ) ).thenThrow( new RuntimeException( expectedMessage ) );
 
         mockWebRequestDescription( cnpj );

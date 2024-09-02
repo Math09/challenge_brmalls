@@ -4,13 +4,12 @@ import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Table( name = "empresa" )
-@AttributeOverride( name = "id", column = @Column (name = "id") )
+@AttributeOverride( name = "id", column = @Column ( name = "id" ) )
 public class CompanyModel extends AbstractModel {
 
     @Column( name = "cnpj" )
@@ -22,8 +21,14 @@ public class CompanyModel extends AbstractModel {
     @Column( name = "nome_fantasia" )
     public @Getter @Setter String fantasyName;
 
+    @Override
     public String toString() {
-        return "CompanyModel{ " + "id=" + getId() + ", cnpj='" + getCnpj() + '\'' + ", socialName='" + getSocialName() + '\'' + ", fantasyName='" + getFantasyName() + '}';
+        return "CompanyModel{ " +
+                "id=" + getId() +
+                ", cnpj='" + getCnpj() + '\'' +
+                ", socialName='" + getSocialName() + '\'' +
+                ", fantasyName='" + getFantasyName() + '\'' +
+                '}';
     }
 
 }

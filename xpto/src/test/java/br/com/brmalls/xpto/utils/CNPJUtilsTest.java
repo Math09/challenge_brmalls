@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CNPJUtilsTest {
 
     @ParameterizedTest
-    @ValueSource(strings = { "CNPJ_PLACEHOLDER", "CNPJ_PLACEHOLDER" } )
+    @ValueSource( strings = { "CNPJ_PLACEHOLDER", "CNPJ_PLACEHOLDER" } )
     void testValidCNPJ( String cnpj ) {
         assertTrue( CNPJUtils.isValidCNPJ( cnpj ) );
     }

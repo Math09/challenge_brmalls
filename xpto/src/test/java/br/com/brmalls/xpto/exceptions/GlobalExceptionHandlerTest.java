@@ -15,8 +15,8 @@ import java.util.NoSuchElementException;
 import java.util.Objects;
 
 import static java.lang.String.format;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GlobalExceptionHandlerTest {
 
@@ -41,14 +41,13 @@ public class GlobalExceptionHandlerTest {
         final String invalidCNPJ = "CNPJ_PLACEHOLDER";
 
         final IllegalArgumentException exception = new IllegalArgumentException( format( CONSTANTS.INVALID_CNPJ, invalidCNPJ ) );
-        final ResponseEntity<ErrorResponseDTO> response = globalExceptionHandler.processIllegalArgumentException(exception, webRequest);
+        final ResponseEntity<ErrorResponseDTO> response = globalExceptionHandler.processIllegalArgumentException( exception, webRequest );
 
         assertEquals( HttpStatus.BAD_REQUEST, response.getStatusCode() );
         assertEquals( format( CONSTANTS.INVALID_CNPJ, invalidCNPJ ), Objects.requireNonNull( response.getBody() ).getMessage() );
         assertEquals( "Bad Request", response.getBody().getError() );
         assertEquals( "/test", response.getBody().getPath() );
     }
-
 
     @Test
     void isProcessIllegalStateException() {

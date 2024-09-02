@@ -53,7 +53,7 @@ public class FormatUtilsTest {
             "Some message with {} and another {}"
     } )
     void isFormattedMessageWithValidCNPJ( String message ) {
-        final String cnpj = "CNPJ_VARIABLE";
+        final String cnpj = "CNPJ_PLACEHOLDER";
         final String expected = message.replace( "{}", cnpj );
         final String formattedMessage = FormatUtils.formatMessageErrorWithCNPJ( message, cnpj );
 
@@ -74,7 +74,7 @@ public class FormatUtilsTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {
+    @ValueSource( strings = {
             "Error with CNPJ: {}",
             "Some message with {} and another {}"
     })
@@ -88,7 +88,7 @@ public class FormatUtilsTest {
     @Test
     void isNotFormattedMessageWithNoPlaceholder() {
         final String message = "No placeholder here";
-        final String cnpj = "CNPJ_VARIABLE";
+        final String cnpj = "CNPJ_PLACEHOLDER";
         final String expected = "No placeholder here";
 
         final String actual = FormatUtils.formatMessageErrorWithCNPJ( message, cnpj );

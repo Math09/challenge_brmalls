@@ -45,7 +45,7 @@ public class CompanyServiceImpl implements CompanyService {
             logger.info( CONSTANTS.COMPANY_SAVED, company );
 
             return company;
-        });
+        } );
     }
 
     private CompanyModel fetchCompany( String cnpj ) {
@@ -58,14 +58,14 @@ public class CompanyServiceImpl implements CompanyService {
         try {
             logger.info( CONSTANTS.QUERYING_COMPANY, cnpj );
 
-            CompanyDataResponseDTO response = restTemplate.getForObject( url, CompanyDataResponseDTO.class );
+            final CompanyDataResponseDTO response = restTemplate.getForObject( url, CompanyDataResponseDTO.class );
 
             if( response == null ) {
                 logger.error( CONSTANTS.RESPONSE_NO, cnpj );
                 throw new NoSuchElementException( FormatUtils.formatMessageErrorWithCNPJ( CONSTANTS.RESPONSE_NO, cnpj ) );
             }
             else if( ( "OK" ).equals( response.getStatus() ) ) {
-                CompanyModel company = new CompanyModel();
+                final CompanyModel company = new CompanyModel();
 
                 company.setCnpj( FormatUtils.formatCNPJ( response.getCnpj() ) );
                 company.setSocialName( response.getNome() );

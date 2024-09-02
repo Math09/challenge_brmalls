@@ -49,7 +49,7 @@ public class CompanyDAOTest {
 
     @Test
     void existCNPJInDB() {
-        Optional<CompanyModel> company = companyDAO.findByCnpj( "CNPJ_PLACEHOLDER" );
+        final Optional<CompanyModel> company = companyDAO.findByCnpj( "CNPJ_PLACEHOLDER" );
 
         assertTrue( company.isPresent(), "The company must exist in the database" );
         assertEquals( "Empresa LMN ME", company.get().getSocialName(), "Company social name should match" );
@@ -57,7 +57,7 @@ public class CompanyDAOTest {
 
     @Test
     void notExistCNPJInDB() {
-        Optional<CompanyModel> company = companyDAO.findByCnpj( "INVALID_CNPJ_PLACEHOLDER" );
+        final Optional<CompanyModel> company = companyDAO.findByCnpj( "INVALID_CNPJ_PLACEHOLDER" );
         assertTrue( company.isEmpty(), "The company must not exist in the database." );
     }
 
