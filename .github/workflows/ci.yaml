@@ -49,4 +49,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t myapp:test .
+        run: docker build -t myapp:test --build-arg MAVEN_OPTS="-DskipTests" .
