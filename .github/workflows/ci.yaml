@@ -49,7 +49,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker image
-        run: docker build -t myapp:test --build-arg MAVEN_OPTS="-DskipTests" xpto/Dockerfile xpto
+        run: docker build -t myapp:test --build-arg MAVEN_OPTS="-DskipTests" -f xpto/Dockerfile xpto
   
   build_dockerfile_mysql:
     runs-on: ubuntu-latest
