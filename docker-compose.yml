@@ -30,7 +30,9 @@ services:
     volumes:
       - ./xpto/target:/xpto_api/target
       - ./tools/scripts/wait-for-mysql.sh:/wait-for-mysql.sh
-    command: ["sh", "-c", "/wait-for-mysql.sh database 3306 -- java $([ \"$DEBUG\" = 'true' ] && echo '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005') -jar /xpto.jar"]
+    command: >
+      sh -c "/wait-for-mysql.sh database 3306 -- 
+      java $${DEBUG:+-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005} -jar /xpto.jar"
 
 networks:
   default:
