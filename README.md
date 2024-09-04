@@ -209,14 +209,15 @@ cd challenge_brmalls
      docker run -d --name database -p 3306:3306 -t mysql
      ```
    **Docker Compose**
-    - **Run Docker Compose in debug mode**
+   - **Run Docker Compose in debug mode**
      ```bash
      DEBUG=true docker-compose -p xpto up -d --build
      ```
-    - **Run Docker Compose without debug mode**
+   - **Run Docker Compose without debug mode**
      ```bash
      DEBUG=false docker-compose -p xpto up -d --build
      ```
+
 
 **Step 3:** Check running containers
 ```bash
