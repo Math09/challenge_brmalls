@@ -25,7 +25,7 @@
 
 <div align="center">
 
-[➜ Read me in English](../README.md)
+[➜ Read me in English](https://github.com/matheus-srego/challenge_brmalls/blob/main/README.md)
 
 </div>
 
