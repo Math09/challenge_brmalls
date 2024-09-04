@@ -75,7 +75,8 @@
 │   └── scripts
 │       ├── clean.sh
 │       ├── docker_java.sh
-│       └── docker_mysql.sh
+│       ├── docker_mysql.sh
+│       └── wait-for-mysql.sh
 └── xpto
     ├── Dockerfile
     ├── mvnw
@@ -163,7 +164,7 @@ A API foi desenvolvida com o objetivo de ser modular e extensível, seguindo o p
 
 <details>
     <summary><strong>Observação</strong></summary>
-    <p>Antes de executar o projeto é necessário ir até os arquivos application.properties e Dockerfile do MySQL e modificar:</p>
+    <p>Antes de executar o projeto é necessário ir até os arquivos application.properties, Dockerfile do MySQL e docker-compose.yml e modificar:</p>
     <ul style="list-style-type: none;">
         <li><strong>PLACEHOLDER_DB_USERNAME</strong>: Substitua pelo nome de usuário do banco de dados "root".</li>
         <li><strong>PLACEHOLDER_DB_PASSWORD</strong>: Substitua pela senha do banco de dados que desejar.</li>
@@ -180,9 +181,9 @@ git clone https://github.com/matheus-srego/challenge_brmalls.git
 cd challenge_brmalls
 ```
 
-**Passo 2:** Executando com Docker
+**Passo 2:** Executando com Docker ou Docker Compose
 
-**Aplicação Java**
+   **Aplicação Java**
    - **Construir a imagem da aplicação**
      ```bash
      docker build -f Dockerfile -t openjdk .
@@ -205,7 +206,17 @@ cd challenge_brmalls
      ```bash
      docker run -d --name database -p 3306:3306 -t mysql
      ```
-    
+
+   **Docker Compose**
+   - **Executar o Docker Compose no modo debug**
+     ```bash
+     DEBUG=true docker-compose -p xpto up -d --build
+     ```
+   - **Executar o Docker Compose sem o modo debug**
+     ```bash
+     DEBUG=false docker-compose -p xpto up -d --build
+     ```
+
 **Passo 3:** Verificar containers em execução
 ```bash
 docker ps

@@ -77,7 +77,8 @@
 │   └── scripts
 │       ├── clean.sh
 │       ├── docker_java.sh
-│       └── docker_mysql.sh
+│       ├── docker_mysql.sh
+│       └── wait-for-mysql.sh
 └── xpto
     ├── Dockerfile
     ├── mvnw
@@ -165,7 +166,7 @@ The API was designed to be modular and extensible, following a layered architect
 
 <details>
     <summary><strong>Note</strong></summary>
-    <p>Before running the project, you need to go to the application.properties and MySQL Dockerfile files and modify the following:</p>
+    <p>Before running the project, you need to go to the application.properties file, MySQL Dockerfile, and docker-compose.yml and modify the following:</p>
     <ul style="list-style-type: none;">
         <li><strong>PLACEHOLDER_DB_USERNAME</strong>: Replace with the database username "root".</li>
         <li><strong>PLACEHOLDER_DB_PASSWORD</strong>: Replace with the desired database password.</li>
@@ -206,6 +207,15 @@ cd challenge_brmalls
    - **Run the database container**
      ```bash
      docker run -d --name database -p 3306:3306 -t mysql
+     ```
+   **Docker Compose**
+    - **Run Docker Compose in debug mode**
+     ```bash
+     DEBUG=true docker-compose -p xpto up -d --build
+     ```
+    - **Run Docker Compose without debug mode**
+     ```bash
+     DEBUG=false docker-compose -p xpto up -d --build
      ```
 
 **Step 3:** Check running containers
