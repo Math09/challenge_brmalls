@@ -218,7 +218,6 @@ cd challenge_brmalls
      DEBUG=false docker-compose -p xpto up -d --build
      ```
 
-
 **Step 3:** Check running containers
 ```bash
 docker ps
