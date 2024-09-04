@@ -28,9 +28,6 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public CompanyModel getCompanyByCnpj( String cnpj ) {
-        final String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info( CONSTANTS.START_METHOD, methodName, cnpj );
-
         if( !CNPJUtils.isValidCNPJ( cnpj ) ) {
             logger.error( CONSTANTS.INVALID_CNPJ, cnpj );
             throw new IllegalArgumentException( FormatUtils.formatMessageErrorWithCNPJ( CONSTANTS.INVALID_CNPJ, cnpj ) );
@@ -49,9 +46,6 @@ public class CompanyServiceImpl implements CompanyService {
     }
 
     private CompanyModel fetchCompany( String cnpj ) {
-        final String methodName = new Object(){}.getClass().getEnclosingMethod().getName();
-        logger.info( CONSTANTS.START_METHOD, methodName, cnpj );
-
         final RestTemplate restTemplate = new RestTemplate();
         final String url = CONSTANTS.URL_TAX_SERVICE.concat( cnpj );
 
@@ -95,9 +89,6 @@ public class CompanyServiceImpl implements CompanyService {
         catch( Exception exception ) {
             logger.error( CONSTANTS.ERROR_EXCEPTION, cnpj, exception );
             throw exception;
-        }
-        finally {
-            logger.info( CONSTANTS.END_METHOD, methodName, cnpj );
         }
     }
 
