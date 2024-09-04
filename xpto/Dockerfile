@@ -10,6 +10,8 @@ RUN mvn clean install package -DskipTests
 
 FROM openjdk:17-oracle
 
+RUN microdnf install -y telnet && microdnf clean all
+
 COPY --from=build /xpto_api/target/xpto-0.0.1-SNAPSHOT.jar xpto.jar
 
 ENV DEBUG=false
