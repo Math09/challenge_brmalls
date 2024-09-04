@@ -26,7 +26,7 @@ public class FormatUtilsTest {
     } )
     void isRemoveFormats( String cnpj, String cnpjExpected ) {
         final String cleanedCNPJ = FormatUtils.formatCNPJ( cnpj );
-        assertEquals( cnpjExpected, cleanedCNPJ, "O método deve remover todos os caracteres não numéricos e retornar o CNPJ corretamente formatado." );
+        assertEquals( cnpjExpected, cleanedCNPJ, "The method should remove all non-numeric characters and return the correctly formatted CNPJ." );
     }
 
     @ParameterizedTest
@@ -39,12 +39,12 @@ public class FormatUtilsTest {
         final String expected = "";
         final String actual = FormatUtils.formatCNPJ( cnpj );
 
-        assertEquals( expected, actual, "O método deve retornar uma string vazia quando a entrada é uma string vazia ou espaços em branco." );
+        assertEquals( expected, actual, "The method should return an empty string when the input is an empty string or whitespace." );
     }
 
     @Test
     void isReturningNull() {
-        assertThrows( NullPointerException.class, () -> FormatUtils.formatCNPJ( null ), "O método deve lançar NullPointerException quando a entrada é null." );
+        assertThrows( NullPointerException.class, () -> FormatUtils.formatCNPJ( null ), "The method should throw a NullPointerException when the input is null." );
     }
 
     @ParameterizedTest
@@ -57,7 +57,7 @@ public class FormatUtilsTest {
         final String expected = message.replace( "{}", cnpj );
         final String formattedMessage = FormatUtils.formatMessageErrorWithCNPJ( message, cnpj );
 
-        assertEquals( expected, formattedMessage, "O CNPJ deve substituir o placeholder {} na mensagem." );
+        assertEquals( expected, formattedMessage, "The CNPJ should replace the placeholder {} in the message." );
     }
 
     @ParameterizedTest
@@ -70,7 +70,7 @@ public class FormatUtilsTest {
         final String expected = message.replace( "{}", cnpj != null ? cnpj : "cnpj_null" );
         final String actual = FormatUtils.formatMessageErrorWithCNPJ( message, null );
 
-        assertEquals( expected, actual, "O placeholder {} deve ser substituído pela string 'cnpj_null' se o CNPJ for null." );
+        assertEquals( expected, actual, "The placeholder {} should be replaced with the string 'cnpj_null' if the CNPJ is null." );
     }
 
     @ParameterizedTest
@@ -82,7 +82,7 @@ public class FormatUtilsTest {
         final String expected = message.replace( "{}", "" );
         final String actual = FormatUtils.formatMessageErrorWithCNPJ( message, "" );
 
-        assertEquals( expected, actual, "O placeholder {} deve ser substituído por uma string vazia se o CNPJ for vazio." );
+        assertEquals( expected, actual, "The placeholder {} should be replaced with an empty string if the CNPJ is empty." );
     }
 
     @Test
@@ -93,13 +93,13 @@ public class FormatUtilsTest {
 
         final String actual = FormatUtils.formatMessageErrorWithCNPJ( message, cnpj );
 
-        assertEquals( expected, actual, "A mensagem deve permanecer inalterada se não houver placeholder {}." );
+        assertEquals( expected, actual, "The message should remain unchanged if there is no placeholder {}." );
     }
 
     @Test
     void isNullPointerWithNullMessage() {
         final String cnpj = "CNPJ_VARIABLE";
-        assertThrows( NullPointerException.class, () -> FormatUtils.formatMessageErrorWithCNPJ( null, cnpj ), "Deve lançar NullPointerException quando a mensagem é null." );
+        assertThrows( NullPointerException.class, () -> FormatUtils.formatMessageErrorWithCNPJ( null, cnpj ), "It should throw a NullPointerException when the message is null." );
     }
 
 }
