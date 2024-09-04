@@ -1,20 +1,37 @@
+name: xpto
+
 services:
-  mysql:
+  database:
     build:
       context: ./mysql
       dockerfile: Dockerfile
-    image: mysql
     container_name: database
-    ports: 
-      - '3306:3306'
     environment:
-      MYSQL_USER: 'xpto_user'
-      MYSQL_PASSWORD: 'qwerty'
-      MYSQL_ROOT_PASSWORD: 'PLACEHOLDER_DB_PASSWORD'
+      MYSQL_ROOT_PASSWORD: PLACEHOLDER_DB_PASSWORD
     volumes:
-      - database:/var/lib/mysql
-      - ./init:/docker-entrypoint-initdb.d
+      - ./mysql/queries:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
 
-volumes:
-  database:
-    name: mysql_database
+  api:
+    build:
+      context: ./xpto
+      dockerfile: Dockerfile
+    container_name: api
+    environment:
+      DEBUG: "false"
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    depends_on:
+      - database
+    links:
+      - database:mysql
+    volumes:
+      - ./xpto/target:/xpto_api/target
+      - ./tools/scripts/wait-for-mysql.sh:/wait-for-mysql.sh
+    command: ["sh", "-c", "/wait-for-mysql.sh database 3306 -- java $([ \"$DEBUG\" = 'true' ] && echo '-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005') -jar /xpto.jar"]
+
+networks:
+  default:
+    name: xpto-project
