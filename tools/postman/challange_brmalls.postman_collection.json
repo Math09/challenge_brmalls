@@ -1,0 +1,28 @@
+{
+	"info": {
+		"_postman_id": "0d5d2000-06f1-42b7-9061-35ffa18d8c10",
+		"name": "challange_brmalls",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19008324"
+	},
+	"item": [
+		{
+			"name": "Hello Docker",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/docker/testing-contianer"
+			},
+			"response": []
+		},
+		{
+			"name": "CompanyByCNPJ",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "http://localhost:8080/company/{cnpj}"
+			},
+			"response": []
+		}
+	]
+}
