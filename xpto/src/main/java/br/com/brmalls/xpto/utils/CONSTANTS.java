@@ -4,9 +4,9 @@ public class CONSTANTS {
 
     public static final String URL_TAX_SERVICE = "https://www.receitaws.com.br/v1/cnpj/";
 
-    public static final String START_METHOD = "Starting method {} with CNPJ: {}";
+    public static final String START_METHOD = "Starting method {} of controller {} with CNPJ: {}";
 
-    public static final String END_METHOD = "Finishing method {} with CNPJ: {}";
+    public static final String END_METHOD = "Finishing method {} of controller {} with CNPJ: {}";
 
     public static final String COMPANY_SAVED = "Company saved in the database: {}";
 
