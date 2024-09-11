@@ -25,6 +25,12 @@
 
 <div align="center">
 
+[![Build with Maven, Dockerfile Java and Dockerfile MySQL](https://github.com/matheus-srego/challenge_brmalls/actions/workflows/ci.yaml/badge.svg)](https://github.com/matheus-srego/challenge_brmalls/actions/workflows/ci.yaml)
+
+</div>
+
+<div align="center">
+
 [➜ Read me in English](https://github.com/matheus-srego/challenge_brmalls/blob/main/README.md)
 
 </div>
